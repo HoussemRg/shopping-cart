@@ -44,6 +44,21 @@ body{
     font-weight: bold;
     letter-spacing: 2px;
 }
+.number-products{
+    width:15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: absolute;
+    right: 100px;
+    top:25px;
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Tajawal',sans-serif;
+}
 .container{
     height: 100%;
     width: 80%;
@@ -79,7 +94,7 @@ body{
     border: 2px solid white;
     position: relative;
     transition: 0.5s;
-    cursor: pointer;
+    
 
 }
 .img-continer:hover{
@@ -112,6 +127,7 @@ body{
     z-index: 2;
     font-family: 'Open Sans',sans-serif;
     text-align: center;
+    visibility: hidden;
 }
 .cart-title{
     margin-top: 80px;
@@ -152,7 +168,20 @@ body{
     border-radius: 4px;
 
 }
+.previous-img{
+    height: 25px;
+    width: 25px;
+}
+.previous{
+    position: absolute;
+    top:20px;
+    right: 10px;
+    border:none;
+    cursor: pointer;
+}
 
 .buy{
-    visibility:hidden;
+    visibility:visible;
 }
+
+
