@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Open+Sans&family=Raleway:ital@1&family=Roboto:wght@500&family=Tajawal:wght@200;400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(78, 78, 62);
+    width: 100vw;
+    
+    
+}
+.navbar{
+    height: 80px;
+    width:100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: azure;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:fixed;
+    top:0;
+    right: 0;
+    z-index: 1;
+}
+.cart-icon{
+    height: 30px;
+    width:30px;
+}
+.navbar .left-title{
+    margin-left: 80px;
+    cursor: pointer;
+}
+.navbar button{
+    margin-right: 70px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-family: 'Tajawal',sans-serif;
+    padding:10px;
+    font-size:18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.container{
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+.title{
+    margin-top:80px;
+     height: 60px;
+     padding: 10px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: white;
+     font-family: 'Tajawal',sans-serif;
+     font-weight: bold;
+}
+.product-img{
+    width: 100%;
+    height: 200px;
+}
+.button-add img{
+    height: 100%;
+    width: 100%;
+}
+.grid{
+    margin-top:10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+.img-continer{
+    border: 2px solid white;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+
+}
+.img-continer:hover{
+    transform: scale(1.1);
+
+}
+.name,.price{
+    margin: 8px 5px;
+    font-family: 'Raleway',sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 2px;
+}
+.button-add{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+.cart{
+    height: 1500px;
+    width: 300px;
+    background-color: azure;
+    position: absolute;
+    top:0;
+    right: 0;
+    z-index: 2;
+    font-family: 'Open Sans',sans-serif;
+    text-align: center;
+}
+.cart-title{
+    margin-top: 80px;
+    text-align: center;
+}
+.items{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid gray;
+    
+}
+.img-item{
+    width: 70px;
+    height: 70px;
+}
+.delete{
+    border: none;
+    cursor: pointer;
+}
+.delete-item{
+    width: 35px;
+    height: 35px;
+}
+.total::before{
+    content: "Total : ";
+    font-weight: bold;
+}
+
+.calculate{
+    padding:4px 8px;
+    background-color: rgb(241, 61, 61);
+    border:none;
+    margin-top: 20px;
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+
+}
+
+.buy{
+    visibility:hidden;
+}
