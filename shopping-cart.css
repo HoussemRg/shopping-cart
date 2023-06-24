@@ -124,7 +124,7 @@ body{
     position: absolute;
     top:0;
     right: 0;
-    z-index: 2;
+    z-index: 3;
     font-family: 'Open Sans',sans-serif;
     text-align: center;
     visibility: hidden;
