@@ -57,7 +57,7 @@ let totalCart=document.querySelector('.cart');
 let item=document.getElementById('item');
 let productsBuyed=document.getElementById('pd');
 let total=document.querySelector('.total');
-let sum=0;
+
 
 
 if(localStorage.getItem('cart')!=null){
@@ -75,8 +75,15 @@ else{
     nbProducts=0;
     productsBuyed.innerHTML=nbProducts;
 }
+if(localStorage.getItem('total')!=null){
+    total.innerHTML=localStorage.getItem('total');
+}
+else{
+    total.innerHTML='0';
+}
 function addToCart(index){
     if(arrayOfProducts[index-1].state==='not-added'){
+        
         cart.innerHTML+=`
                     <div>
                         <div class="items" id="item${index}">
@@ -86,14 +93,15 @@ function addToCart(index){
                     <div class="description">
                         <p class="item-title">${arrayOfProducts[index-1].productName}</p>
                         <p class="item-price">${arrayOfProducts[index-1].productPrice}</p>
-                        <input type="number" name="Number"  id="number-${index}" min="1">
+                        <input type="number" name="Number" value='1'  id="number-${index}" min="1">
                     </div>
-                    <button class="delete" onclick="removeProduct(${index});"><img src="img/bxs-trash-alt.png" alt="" class="delete-item"></button>
+                    <button class="delete" onclick="removeProduct(${index,document.querySelector(`#number-${index}`)});"><img src="img/bxs-trash-alt.png" alt="" class="delete-item"></button>
                     </div>
                     </div>`;
         let coef=document.querySelector(`#number-${index}`);
         coef.addEventListener('input',()=>{
-            updateTotal(index);     
+            
+            updateTotal();     
         });
         
         arrayOfProducts[index-1].state='added';
@@ -118,7 +126,10 @@ function hideCart(){
     totalCart.classList.remove('buy');
 }
 
-function removeProduct(index){
+function removeProduct(index,event){
+    let summ=Number(total.innerHTML);
+    summ-=Number(arrayOfProducts[index-1].productPrice)*Number(event.target.value);
+    total.innerHTML=summ;
     let item=document.getElementById(`item${index}`);
     item.parentElement.remove();
     arrayOfProducts[index-1].state='not-added';
@@ -126,22 +137,32 @@ function removeProduct(index){
     localStorage.setItem('nbProducts',nbProducts);
     productsBuyed.innerHTML=nbProducts;
     localStorage.setItem('cart',cart.innerHTML);
-    sum-=Number(arrayOfProducts[index-1].productPrice);
-    total.innerHTML=sum;
+    
     
 }
 
-function updateTotal(index){
-    
+function updateTotal(){
+    let sum=0;
     let items=document.querySelectorAll('.items');
     items.forEach((item)=>{
         let quantityInput=item.querySelector('input[name="Number"]');
         let quantity=quantityInput.value;
-        sum+=Number(arrayOfProducts[index-1].productPrice)*Number(quantity);
-
+        let price=item.querySelector('.item-price').textContent;
+        sum+=Number(price)*Number(quantity);
         })
     total.innerHTML=sum;
+    localStorage.setItem('total',total.innerHTML);
 }
 
+function buyProducts(){
+    cart.innerHTML=`<div class="cart-items">
+    <button class="previous" onclick="hideCart();"><img src="img/Screenshot 2023-06-21 225736.png" alt="" class="previous-img"></button>
+    <div class="cart-title"><h2>Your Cart</h2></div>
+    
+</div>`;
+    total.innerHTML='0';
+    localStorage.clear();
+    alert('Done');
+}
 
 
