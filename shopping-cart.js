@@ -57,7 +57,8 @@ let totalCart=document.querySelector('.cart');
 let item=document.getElementById('item');
 let productsBuyed=document.getElementById('pd');
 let total=document.querySelector('.total');
-let sum=Number(total.innerHTML);
+let sum=0;
+
 
 if(localStorage.getItem('cart')!=null){
     cart.innerHTML=localStorage.getItem('cart');
@@ -85,24 +86,22 @@ function addToCart(index){
                     <div class="description">
                         <p class="item-title">${arrayOfProducts[index-1].productName}</p>
                         <p class="item-price">${arrayOfProducts[index-1].productPrice}</p>
-                        <input type="number" name="Number" value="1" id="number-${index}" min="1">
+                        <input type="number" name="Number"  id="number-${index}" min="1">
                     </div>
                     <button class="delete" onclick="removeProduct(${index});"><img src="img/bxs-trash-alt.png" alt="" class="delete-item"></button>
                     </div>
                     </div>`;
         let coef=document.querySelector(`#number-${index}`);
-        let numberOfProductsToBuy=0;
-        coef.addEventListener('input',(event)=>{
-            numberOfProductsToBuy=event.target.value;
-        })
-        console.log(numberOfProductsToBuy);
+        coef.addEventListener('input',()=>{
+            updateTotal(index);     
+        });
         
         arrayOfProducts[index-1].state='added';
         nbProducts++;
         localStorage.setItem('nbProducts',nbProducts);
         productsBuyed.innerHTML=nbProducts;
-        sum+=Number(arrayOfProducts[index-1].productPrice);
-        total.innerHTML=sum;
+        
+        
     }
     else{
         alert('product added');
@@ -130,6 +129,18 @@ function removeProduct(index){
     sum-=Number(arrayOfProducts[index-1].productPrice);
     total.innerHTML=sum;
     
+}
+
+function updateTotal(index){
+    
+    let items=document.querySelectorAll('.items');
+    items.forEach((item)=>{
+        let quantityInput=item.querySelector('input[name="Number"]');
+        let quantity=quantityInput.value;
+        sum+=Number(arrayOfProducts[index-1].productPrice)*Number(quantity);
+
+        })
+    total.innerHTML=sum;
 }
 
 
